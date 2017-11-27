@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+Welcome @HttpContext.Current.User.Identity.Name
+
+@if (Request.IsAuthenticated)
+{
+    <div>
+        @Html.ActionLink("Click here to Logout:", "Logout","User")
+    </div>
+}
+

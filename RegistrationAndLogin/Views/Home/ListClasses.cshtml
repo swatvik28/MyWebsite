@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RegistrationAndLogin.Models.DemoClass>
+
+@{
+    ViewBag.Title = "ListClasses";
+}
+
+<br /><br />
+Welcome @HttpContext.Current.User.Identity.Name
+
+@if (Request.IsAuthenticated)
+{
+    <br />
+    <br />
+    <div>
+        @Html.ActionLink("Click here to Create Class:", "Create", "Home")
+    </div>
+    <br />
+    <div class="alert alert-success">
+        <strong>@TempData["successMessage"]</strong>
+    </div>
+
+<h2>List Of Classes:</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NofHoure)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NofHoure)
+        </td>
+        <td>
+            @Html.ActionLink(linkText: "Edit", actionName: "Edit", controllerName: "Home", routeValues: new{ id = item.ClassId }, htmlAttributes: null) |
+            @Html.ActionLink(linkText: "Delete", actionName: "Delete", controllerName: "Home", routeValues: new { id = item.ClassId }, htmlAttributes: null) 
+        </td>
+    </tr>
+}
+</table>
+
+<div>
+    @Html.ActionLink("Click here to Logout:", "Logout", "User")
+</div>
+}
+
+
